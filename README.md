@@ -14,9 +14,12 @@ This repo focuses on core requirements: follows, browse, drops, **atomic stock**
 - **Docker** for Postgres/Redis; simple migration runner
 - **Auth**: developer login endpoint returning a JWT (for demo)
 
+
 ## Run locally
 
 ```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y docker.io docker-compose-plugin
 cp .env.example .env
 docker compose up -d postgres redis
 npm install
