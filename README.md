@@ -19,7 +19,7 @@ This repo focuses on core requirements: follows, browse, drops, **atomic stock**
 
 ```bash
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y docker.io docker-compose-plugin
+sudo apt install -y docker.io docker-compose
 cp .env.example .env
 docker compose up -d postgres redis
 npm install
