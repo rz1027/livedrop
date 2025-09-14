@@ -21,7 +21,7 @@ This repo focuses on core requirements: follows, browse, drops, **atomic stock**
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y docker.io docker-compose
 cp .env.example .env
-docker compose up -d postgres redis
+docker-compose up -d postgres redis
 npm install
 npm run migrate:up
 npm run dev
