@@ -1,0 +1,35 @@
+
+version: "3.9"
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: livedrop
+      POSTGRES_PASSWORD: livedrop
+      POSTGRES_DB: livedrop
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redisdata:/data
+  api:
+    build: .
+    command: sh -c "npm install && npm run migrate:up && npm run dev"
+    ports:
+      - "4000:4000"
+    environment:
+      - DATABASE_URL=postgres://livedrop:livedrop@postgres:5432/livedrop
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=devsecret
+    depends_on:
+      - postgres
+      - redis
+volumes:
+  pgdata:
+  redisdata:
